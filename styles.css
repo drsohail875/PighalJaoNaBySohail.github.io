@@ -7,9 +7,9 @@ body {
 }
 
 #noButton {
-    position: absolute;
-    margin-left: 200px;
-    transition: 0.5s;
+    position: fixed;
+    transition: 0.2s;
+    z-index: 10;
 }
 
 #yesButton {
@@ -92,4 +92,4 @@ body {
         padding: 15px 25px;
         font-size: 14px;
     }
-    }
+}
