@@ -3,62 +3,67 @@
 
 <head>
     <style>
-        audio{
-            display:none;
-        } 
+        audio{ display:none; } 
     </style>
     <link rel="stylesheet" href="./styles.css">
 </head> 
 
 <body>
 
-    <audio autoplay loop> 
-        <source src="Snowmancut.mp3" type="audio/mp3"> 
-    </audio>
+<audio autoplay loop> 
+    <source src="Snowmancut.mp3" type="audio/mp3"> 
+</audio>
 
-    <div class="container">
+<div class="container">
 
-        <div>
-            <h1 class="header_text">Can we go on a date? 👉🏻👈🏻</h1>
-            <h1 class="header_text">Please? If you don't mind...</h1>
-        </div>
-
-        <div class="gif_container">
-            <img src="xyza.gif" alt="Cute animated illustration">
-        </div>
-
-        <div class="buttons">
-            <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
-            <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
-        </div>
-
+    <div>
+        <h1 class="header_text">Can we go on a date? 👉🏻👈🏻</h1>
+        <h1 class="header_text">Please? If you don't mind...</h1>
     </div>
 
-    <script>
-        let noCount = 0;
+    <div class="gif_container">
+        <img src="xyza.gif" alt="Cute animated illustration">
+    </div>
 
-        function nextPage() {
-            window.location.href = "yes.html";
-        }
+    <div class="buttons">
+        <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
+        <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
+    </div>
 
-        function moveButton() {
-            noCount++;
+</div>
 
-            if (noCount >= 7) {
-                window.location.href = "no.html";
-                return;
-            }
+<script>
+let noCount = 0;
+let t = 0;
 
-            let btn = document.getElementById("noButton");
+function nextPage() {
+    window.location.href = "yes.html";
+}
 
-            let x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            let y = Math.random() * (window.innerHeight - btn.offsetHeight);
+function moveButton() {
+    noCount++;
 
-            btn.style.left = x + "px";
-            btn.style.top = y + "px";
-        }
-    </script>
+    if (noCount >= 8) {
+        window.location.href = "no.html";
+        return;
+    }
+
+    let btn = document.getElementById("noButton");
+
+    let centerX = window.innerWidth / 2;
+    let centerY = window.innerHeight / 2;
+
+    let size = 120;
+
+    let x = centerX + size * 16 * Math.pow(Math.sin(t), 3);
+    let y = centerY - size * (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+
+    t += 0.4;
+}
+</script>
 
 </body>
 </html>
-
