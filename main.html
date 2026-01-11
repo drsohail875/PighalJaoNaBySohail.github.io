@@ -48,23 +48,24 @@ function moveButton() {
   }
 
   const btn = document.getElementById("noButton");
-  const maxX = window.innerWidth - btn.offsetWidth;
-  const maxY = window.innerHeight - btn.offsetHeight;
+  const gif = document.querySelector(".gif_container img");
 
-  const cx = maxX / 2;
-  const cy = maxY / 2;
-  const size = 60;
+  const rect = gif.getBoundingClientRect();
+
+  // Center of gif
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height / 2;
+
+  const size = 30; // VERY tight heart around gif
 
   let x = cx + size * 16 * Math.pow(Math.sin(t), 3);
   let y = cy - size * (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
 
-  x = Math.max(0, Math.min(maxX, x));
-  y = Math.max(0, Math.min(maxY, y));
+  btn.style.position = "absolute";
+  btn.style.left = (x - btn.offsetWidth / 2) + "px";
+  btn.style.top  = (y - btn.offsetHeight / 2) + "px";
 
-  btn.style.left = x + "px";
-  btn.style.top = y + "px";
-
-  t += 0.4;
+  t += 0.5;
 }
 </script>
 
